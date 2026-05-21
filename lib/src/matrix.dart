@@ -44,6 +44,14 @@ class Matrix {
     return matrixToString;
   }
 
+  @override
+  int get hashCode => Object.hashAll(matrix.expand((r) => r));
+
+  @override
+  bool operator ==(Object other) {
+    return other is Matrix && other.hashCode == hashCode;
+  }
+
   /// 获取矩阵的行数
   int get rowCount {
     return matrix.length;
@@ -173,7 +181,6 @@ class Matrix {
         }
       }
       if (k != d)
-
       // 交换第i行和第k行，行列式该变号
       {
         for (j = i; j < mat[0].length; j++) {
@@ -389,7 +396,8 @@ class Matrix {
       return column(0);
     } else {
       throw Exception(
-          'Unable to get a value from this index. You can use an integer or an empty string. ');
+        'Unable to get a value from this index. You can use an integer or an empty string. ',
+      );
     }
     return [];
   }
@@ -405,7 +413,8 @@ class Matrix {
       setColumn(value, 0);
     } else {
       throw Exception(
-          'Unable to assign a value to this index. You can use an integer or an empty string. ');
+        'Unable to assign a value to this index. You can use an integer or an empty string. ',
+      );
     }
   }
 }
